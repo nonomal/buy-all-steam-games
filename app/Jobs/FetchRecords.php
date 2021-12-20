@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class FetchRecords implements ShouldQueue
 {
@@ -62,6 +63,8 @@ class FetchRecords implements ShouldQueue
         }
 
         $this->store($original, $sale);
+
+        Log::info(`Fetch completed: {$this->country}`);
     }
 
     public function store(int $original, int $sale)
